@@ -17,7 +17,7 @@ import javax.xml.ws.ResponseWrapper;
  * Generated source version: 2.2
  * 
  */
-@WebService(name = "LibraryImpl", targetNamespace = "http://library/")
+@WebService(name = "LibraryImpl", targetNamespace = "http://web/")
 @XmlSeeAlso({
     ObjectFactory.class
 })
@@ -33,9 +33,9 @@ public interface LibraryImpl {
      */
     @WebMethod
     @WebResult(targetNamespace = "")
-    @RequestWrapper(localName = "logIn", targetNamespace = "http://library/", className = "model.webservice.LogIn")
-    @ResponseWrapper(localName = "logInResponse", targetNamespace = "http://library/", className = "model.webservice.LogInResponse")
-    @Action(input = "http://library/LibraryImpl/logInRequest", output = "http://library/LibraryImpl/logInResponse")
+    @RequestWrapper(localName = "logIn", targetNamespace = "http://web/", className = "model.webservice.LogIn")
+    @ResponseWrapper(localName = "logInResponse", targetNamespace = "http://web/", className = "model.webservice.LogInResponse")
+    @Action(input = "http://web/LibraryImpl/logInRequest", output = "http://web/LibraryImpl/logInResponse")
     public boolean logIn(
             @WebParam(name = "arg0", targetNamespace = "")
                     String arg0,

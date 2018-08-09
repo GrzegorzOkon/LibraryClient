@@ -24,8 +24,8 @@ import javax.xml.namespace.QName;
 @XmlRegistry
 public class ObjectFactory {
 
-    private final static QName _LogInResponse_QNAME = new QName("http://library/", "logInResponse");
-    private final static QName _LogIn_QNAME = new QName("http://library/", "logIn");
+    private final static QName _LogIn_QNAME = new QName("http://web/", "logIn");
+    private final static QName _LogInResponse_QNAME = new QName("http://web/", "logInResponse");
 
     /**
      * Create a new ObjectFactory that can be used to create new instances of schema derived classes for package: model.webservice
@@ -51,21 +51,21 @@ public class ObjectFactory {
     }
 
     /**
-     * Create an instance of {@link JAXBElement }{@code <}{@link LogInResponse }{@code >}}
-     * 
-     */
-    @XmlElementDecl(namespace = "http://library/", name = "logInResponse")
-    public JAXBElement<LogInResponse> createLogInResponse(LogInResponse value) {
-        return new JAXBElement<LogInResponse>(_LogInResponse_QNAME, LogInResponse.class, null, value);
-    }
-
-    /**
      * Create an instance of {@link JAXBElement }{@code <}{@link LogIn }{@code >}}
      * 
      */
-    @XmlElementDecl(namespace = "http://library/", name = "logIn")
+    @XmlElementDecl(namespace = "http://web/", name = "logIn")
     public JAXBElement<LogIn> createLogIn(LogIn value) {
         return new JAXBElement<LogIn>(_LogIn_QNAME, LogIn.class, null, value);
+    }
+
+    /**
+     * Create an instance of {@link JAXBElement }{@code <}{@link LogInResponse }{@code >}}
+     * 
+     */
+    @XmlElementDecl(namespace = "http://web/", name = "logInResponse")
+    public JAXBElement<LogInResponse> createLogInResponse(LogInResponse value) {
+        return new JAXBElement<LogInResponse>(_LogInResponse_QNAME, LogInResponse.class, null, value);
     }
 
 }

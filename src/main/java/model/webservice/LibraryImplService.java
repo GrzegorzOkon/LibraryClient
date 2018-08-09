@@ -17,20 +17,20 @@ import javax.xml.ws.WebServiceFeature;
  * Generated source version: 2.2
  * 
  */
-@WebServiceClient(name = "LibraryImplService", targetNamespace = "http://library/", wsdlLocation = "http://localhost:8080/library/library?wsdl")
+@WebServiceClient(name = "LibraryImplService", targetNamespace = "http://web/", wsdlLocation = "http://localhost:8080/library/service?wsdl")
 public class LibraryImplService
     extends Service
 {
 
     private final static URL LIBRARYIMPLSERVICE_WSDL_LOCATION;
     private final static WebServiceException LIBRARYIMPLSERVICE_EXCEPTION;
-    private final static QName LIBRARYIMPLSERVICE_QNAME = new QName("http://library/", "LibraryImplService");
+    private final static QName LIBRARYIMPLSERVICE_QNAME = new QName("http://web/", "LibraryImplService");
 
     static {
         URL url = null;
         WebServiceException e = null;
         try {
-            url = new URL("http://localhost:8080/library/library?wsdl");
+            url = new URL("http://localhost:8080/library/service?wsdl");
         } catch (MalformedURLException ex) {
             e = new WebServiceException(ex);
         }
@@ -69,7 +69,7 @@ public class LibraryImplService
      */
     @WebEndpoint(name = "LibraryImplPort")
     public LibraryImpl getLibraryImplPort() {
-        return super.getPort(new QName("http://library/", "LibraryImplPort"), LibraryImpl.class);
+        return super.getPort(new QName("http://web/", "LibraryImplPort"), LibraryImpl.class);
     }
 
     /**
@@ -81,7 +81,7 @@ public class LibraryImplService
      */
     @WebEndpoint(name = "LibraryImplPort")
     public LibraryImpl getLibraryImplPort(WebServiceFeature... features) {
-        return super.getPort(new QName("http://library/", "LibraryImplPort"), LibraryImpl.class, features);
+        return super.getPort(new QName("http://web/", "LibraryImplPort"), LibraryImpl.class, features);
     }
 
     private static URL __getWsdlLocation() {
