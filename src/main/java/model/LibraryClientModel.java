@@ -2,12 +2,13 @@ package model;
 
 import model.webservice.LibraryImpl;
 import model.webservice.LibraryImplService;
+import model.webservice.User;
 
 public class LibraryClientModel {
-    public boolean connect(String l, String p) {
+    public User connect(String login, String password) {
         LibraryImplService service = new LibraryImplService();
         LibraryImpl library = service.getLibraryImplPort();
 
-        return library.logIn(l, p);
+        return library.logIn(login, password);
     }
 }

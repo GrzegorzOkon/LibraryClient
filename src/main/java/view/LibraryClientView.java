@@ -87,10 +87,12 @@ public class LibraryClientView extends Application {
     }
 
     public static void main(String[] args) {
+
         launch(args);
     }
 
     public void report(String reportText) {
-        logInReport.appendText(reportText);
+
+        logInReport.appendText(reportText + "\n");
     }
 }

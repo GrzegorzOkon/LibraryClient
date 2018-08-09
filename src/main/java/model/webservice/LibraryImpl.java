@@ -29,14 +29,14 @@ public interface LibraryImpl {
      * @param arg1
      * @param arg0
      * @return
-     *     returns boolean
+     *     returns model.webservice.User
      */
     @WebMethod
     @WebResult(targetNamespace = "")
     @RequestWrapper(localName = "logIn", targetNamespace = "http://web/", className = "model.webservice.LogIn")
     @ResponseWrapper(localName = "logInResponse", targetNamespace = "http://web/", className = "model.webservice.LogInResponse")
     @Action(input = "http://web/LibraryImpl/logInRequest", output = "http://web/LibraryImpl/logInResponse")
-    public boolean logIn(
+    public User logIn(
             @WebParam(name = "arg0", targetNamespace = "")
                     String arg0,
             @WebParam(name = "arg1", targetNamespace = "")
