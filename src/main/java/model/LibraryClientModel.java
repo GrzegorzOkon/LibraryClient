@@ -4,8 +4,8 @@ import model.webservice.LibraryImpl;
 import model.webservice.LibraryImplService;
 import model.webservice.User;
 
-public class LibraryClientModel {
-    public User connect(String login, String password) {
+public class LibraryClientModel  {
+    public User connect(String login, String password) throws WrongUserOrPasswordException {
         LibraryImplService service = new LibraryImplService();
         LibraryImpl library = service.getLibraryImplPort();
 
