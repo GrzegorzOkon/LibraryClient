@@ -20,14 +20,11 @@ public class LibraryClientController {
             user = model.connect(login, password);
 
             if (user != null) {
-                view.report("Udało się zalogować.");
-                view.report(user.getFirstName());
-                view.report(user.getSurname());
-                view.report(user.getLogin());
-                view.report(user.getPassword());
+                view.hideLoggingWindow();
+                view.openSecondWindow();
             }
         } catch (RuntimeException ex) {
-            view.report("Wystąpił błąd logowania.");
+            view.report("Niepoprawny login lub hasło.");
         }
     }
 }

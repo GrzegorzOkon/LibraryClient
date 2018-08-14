@@ -11,12 +11,14 @@ import javafx.scene.control.TextField;
 import javafx.scene.layout.BorderPane;
 import javafx.scene.layout.GridPane;
 import javafx.scene.layout.HBox;
+import javafx.scene.layout.StackPane;
 import javafx.stage.Stage;
 import model.LibraryClientModel;
 
 public class LibraryClientView extends Application {
     private LibraryClientController controller;
 
+    private Stage primaryStage;
     private Scene scena;
     private BorderPane mainContainer, konternerDolny;
     private GridPane kontenerSiatki;
@@ -69,30 +71,49 @@ public class LibraryClientView extends Application {
         scena = new Scene(mainContainer, 300, 300);
     }
 
-    private void setReference()
-    {
-        LibraryClientModel model = new LibraryClientModel();
-        controller = new LibraryClientController(this, model);
-    }
-
     @Override
     public void start(Stage primaryStage) {
         prepareScene(primaryStage);
 
-        setReference();
+        setMVCReference();
+        this.primaryStage = primaryStage;
 
         primaryStage.setTitle("LibraryClient");
         primaryStage.setScene(scena);
         primaryStage.show();
     }
 
-    public static void main(String[] args) {
+    private void setMVCReference() {
+        LibraryClientModel model = new LibraryClientModel();
+        controller = new LibraryClientController(this, model);
+    }
 
+    public static void main(String[] args) {
         launch(args);
     }
 
-    public void report(String reportText) {
+    public void openSecondWindow() {
+        StackPane secondaryLayout = new StackPane();
+        //Label secondLabel = new Label("I'm a Label on new Window");
+        //secondaryLayout.getChildren().add(secondLabel);
 
+        Scene secondScene = new Scene(secondaryLayout, 230, 100);
+
+        Stage newWindow = new Stage();
+        newWindow.setTitle("Second Stage");
+        newWindow.setScene(secondScene);
+
+        //newWindow.setX(primaryStage.getX() + 200);
+        //newWindow.setY(primaryStage.getY() + 100);
+
+        newWindow.show();
+    }
+
+    public void hideLoggingWindow() {
+        primaryStage.close();
+    }
+
+    public void report(String reportText) {
         logInReport.appendText(reportText + "\n");
     }
 }
