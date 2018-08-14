@@ -11,64 +11,72 @@ import javafx.scene.control.TextField;
 import javafx.scene.layout.BorderPane;
 import javafx.scene.layout.GridPane;
 import javafx.scene.layout.HBox;
-import javafx.scene.layout.StackPane;
 import javafx.stage.Stage;
 import model.LibraryClientModel;
+import model.webservice.User;
 
 public class LibraryClientView extends Application {
     private LibraryClientController controller;
 
     private Stage primaryStage;
-    private Scene scena;
-    private BorderPane mainContainer, konternerDolny;
-    private GridPane kontenerSiatki;
-    private HBox kontenerPrzyciskow;
-    private TextField userLogin, userPassword;
-    private TextArea logInReport;
-    private Button logIn;
+    private Scene primaryScene;
+    private BorderPane primaryLayout, primaryBottomLayout;
+    private GridPane primaryGrid;
+    private HBox primaryButtons;
+    private TextField primaryUserLogin, primaryUserPassword;
+    private TextArea primaryReport;
+    private Button primaryLogIn;
+
+    private BorderPane secondaryLayout, secondaryBottomLayout;
+    private GridPane secondaryGrid;
+    private Label secondaryLabel;
+    private TextField secondaryTitleInput, secondaryAuthorInput;
+    private TextArea secondaryResult;
+    private HBox secondaryButtons;
+    private Button secondarySearch, secondaryRentals, secondaryReservations, secondaryReserve, secondaryCancel;
 
     private void prepareScene(Stage primaryStage) {
-        mainContainer = new BorderPane();
-        mainContainer.setPadding(new Insets(15, 15, 15, 15));  //tworzy odstęp wokół konteneru
+        primaryLayout = new BorderPane();
+        primaryLayout.setPadding(new Insets(15, 15, 15, 15));
 
-        userLogin = new TextField();
-        userLogin.setPrefSize(150, userLogin.getHeight());
+        primaryUserLogin = new TextField();
+        primaryUserLogin.setPrefSize(150, primaryUserLogin.getHeight());
 
-        userPassword = new TextField();
-        userPassword.setPrefSize(150, userPassword.getHeight());
+        primaryUserPassword = new TextField();
+        primaryUserPassword.setPrefSize(150, primaryUserPassword.getHeight());
 
-        kontenerSiatki = new GridPane();
-        kontenerSiatki.setVgap(4);
-        kontenerSiatki.setHgap(8);
-        kontenerSiatki.setPadding(new Insets(5, 5, 5, 5));
-        kontenerSiatki.add(new Label("Login:"), 0, 0);
-        kontenerSiatki.add(userLogin, 0, 1);
-        kontenerSiatki.add(new Label("Haslo:"), 1, 0);
-        kontenerSiatki.add(userPassword, 1, 1);
-        kontenerSiatki.setPadding(new Insets(0, 0, 10, 0));
+        primaryGrid = new GridPane();
+        primaryGrid.setVgap(4);
+        primaryGrid.setHgap(8);
+        primaryGrid.setPadding(new Insets(5, 5, 5, 5));
+        primaryGrid.add(new Label("Login:"), 0, 0);
+        primaryGrid.add(primaryUserLogin, 0, 1);
+        primaryGrid.add(new Label("Haslo:"), 1, 0);
+        primaryGrid.add(primaryUserPassword, 1, 1);
+        primaryGrid.setPadding(new Insets(0, 0, 10, 0));
 
-        mainContainer.setTop(kontenerSiatki);
+        primaryLayout.setTop(primaryGrid);
 
-        logInReport = new TextArea();
-        mainContainer.setCenter(logInReport);
+        primaryReport = new TextArea();
+        primaryLayout.setCenter(primaryReport);
 
-        konternerDolny = new BorderPane();
-        konternerDolny.setPadding(new Insets(10, 0, 0, 0));
+        primaryBottomLayout = new BorderPane();
+        primaryBottomLayout.setPadding(new Insets(10, 0, 0, 0));
 
-        kontenerPrzyciskow = new HBox(16);
+        primaryButtons = new HBox(16);
 
-        logIn = new Button("Zaloguj");
+        primaryLogIn = new Button("Zaloguj");
 
-        kontenerPrzyciskow.getChildren().add(logIn);
+        primaryButtons.getChildren().add(primaryLogIn);
 
-        logIn.setOnAction((event) -> {
-            controller.connect(userLogin.getText().toLowerCase(), userPassword.getText().toLowerCase());
+        primaryLogIn.setOnAction((event) -> {
+            controller.connect(primaryUserLogin.getText().toLowerCase(), primaryUserPassword.getText().toLowerCase());
         });
 
-        konternerDolny.setRight(kontenerPrzyciskow);
-        mainContainer.setBottom(konternerDolny);
+        primaryBottomLayout.setRight(primaryButtons);
+        primaryLayout.setBottom(primaryBottomLayout);
 
-        scena = new Scene(mainContainer, 300, 300);
+        primaryScene = new Scene(primaryLayout, 300, 300);
     }
 
     @Override
@@ -79,7 +87,7 @@ public class LibraryClientView extends Application {
         this.primaryStage = primaryStage;
 
         primaryStage.setTitle("LibraryClient");
-        primaryStage.setScene(scena);
+        primaryStage.setScene(primaryScene);
         primaryStage.show();
     }
 
@@ -92,19 +100,54 @@ public class LibraryClientView extends Application {
         launch(args);
     }
 
-    public void openSecondWindow() {
-        StackPane secondaryLayout = new StackPane();
-        //Label secondLabel = new Label("I'm a Label on new Window");
-        //secondaryLayout.getChildren().add(secondLabel);
+    public void openSecondWindow(User user) {
+        secondaryLayout = new BorderPane();
+        secondaryLayout.setPadding(new Insets(5, 15, 15, 15));
 
-        Scene secondScene = new Scene(secondaryLayout, 230, 100);
+        secondaryLabel = new Label("Witaj " + user.getFirstName() + " " + user.getSurname());
+        secondaryTitleInput = new TextField();
+        secondaryTitleInput.setPrefSize(150, secondaryTitleInput.getHeight());
+        secondaryAuthorInput = new TextField();
+        secondaryAuthorInput.setPrefSize(150, secondaryAuthorInput.getHeight());
+
+        secondaryGrid = new GridPane();
+        secondaryGrid.setVgap(4);
+        secondaryGrid.setHgap(8);
+        secondaryGrid.add(secondaryLabel, 0, 0);
+        secondaryGrid.setPadding(new Insets(15, 5, 15, 5));
+        secondaryGrid.add(new Label("Tytuł:"), 0, 1);
+        secondaryGrid.add(secondaryTitleInput, 1, 1);
+        secondaryGrid.add(new Label("Autor:"), 0, 2);
+        secondaryGrid.add(secondaryAuthorInput, 1, 2);
+        secondaryGrid.setPadding(new Insets(0, 0, 10, 0));
+        secondaryLayout.setTop(secondaryGrid);
+
+        secondaryResult = new TextArea();
+        secondaryLayout.setCenter(secondaryResult);
+
+        secondaryBottomLayout = new BorderPane();
+        secondaryBottomLayout.setPadding(new Insets(10, 0, 0, 0));
+
+        secondaryButtons = new HBox(10);
+        secondarySearch = new Button("Wyszukaj");
+        secondaryButtons.getChildren().add(secondarySearch);
+        secondaryRentals = new Button("Moje wypożyczenia");
+        secondaryButtons.getChildren().add(secondaryRentals);
+        secondaryReservations = new Button("Moje rezerwacje");
+        secondaryButtons.getChildren().add(secondaryReservations);
+        secondaryReserve = new Button("Rezerwuj");
+        secondaryButtons.getChildren().add(secondaryReserve);
+        secondaryCancel = new Button("Anuluj rezerwację");
+        secondaryButtons.getChildren().add(secondaryCancel);
+
+        secondaryBottomLayout.setLeft(secondaryButtons);
+        secondaryLayout.setBottom(secondaryBottomLayout);
+
+        Scene secondScene = new Scene(secondaryLayout, 700, 400);
 
         Stage newWindow = new Stage();
-        newWindow.setTitle("Second Stage");
+        newWindow.setTitle("LibraryClient");
         newWindow.setScene(secondScene);
-
-        //newWindow.setX(primaryStage.getX() + 200);
-        //newWindow.setY(primaryStage.getY() + 100);
 
         newWindow.show();
     }
@@ -114,6 +157,6 @@ public class LibraryClientView extends Application {
     }
 
     public void report(String reportText) {
-        logInReport.appendText(reportText + "\n");
+        primaryReport.appendText(reportText + "\n");
     }
 }

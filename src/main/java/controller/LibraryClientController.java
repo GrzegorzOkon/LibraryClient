@@ -21,7 +21,7 @@ public class LibraryClientController {
 
             if (user != null) {
                 view.hideLoggingWindow();
-                view.openSecondWindow();
+                view.openSecondWindow(user);
             }
         } catch (RuntimeException ex) {
             view.report("Niepoprawny login lub hasło.");
