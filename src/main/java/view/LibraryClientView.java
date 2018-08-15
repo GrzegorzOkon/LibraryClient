@@ -2,18 +2,21 @@ package view;
 
 import controller.LibraryClientController;
 import javafx.application.Application;
+import javafx.collections.FXCollections;
+import javafx.collections.ObservableList;
 import javafx.geometry.Insets;
 import javafx.scene.Scene;
-import javafx.scene.control.Button;
-import javafx.scene.control.Label;
-import javafx.scene.control.TextArea;
-import javafx.scene.control.TextField;
+import javafx.scene.control.*;
+import javafx.scene.control.cell.PropertyValueFactory;
 import javafx.scene.layout.BorderPane;
 import javafx.scene.layout.GridPane;
 import javafx.scene.layout.HBox;
 import javafx.stage.Stage;
 import model.LibraryClientModel;
+import model.webservice.Book;
 import model.webservice.User;
+
+import java.util.ArrayList;
 
 public class LibraryClientView extends Application {
     private LibraryClientController controller;
@@ -31,7 +34,9 @@ public class LibraryClientView extends Application {
     private GridPane secondaryGrid;
     private Label secondaryLabel;
     private TextField secondaryTitleInput, secondaryAuthorInput;
-    private TextArea secondaryResult;
+    private TableView secondaryResult;
+    private TableColumn titleCol, authorCol, yearCol;
+    private ObservableList<Book> data = FXCollections.observableArrayList();
     private HBox secondaryButtons;
     private Button secondarySearch, secondaryRentals, secondaryReservations, secondaryReserve, secondaryCancel;
 
@@ -122,7 +127,22 @@ public class LibraryClientView extends Application {
         secondaryGrid.setPadding(new Insets(0, 0, 10, 0));
         secondaryLayout.setTop(secondaryGrid);
 
-        secondaryResult = new TextArea();
+        secondaryResult = new TableView();
+
+        titleCol = new TableColumn("Tytuł");
+        titleCol.setMinWidth(300);
+        titleCol.setCellValueFactory(new PropertyValueFactory<Book,String>("title"));
+
+        authorCol = new TableColumn("Autor");
+        authorCol.setMinWidth(200);
+        authorCol.setCellValueFactory(new PropertyValueFactory<Book,String>("author"));
+
+        yearCol = new TableColumn("Rok wydania");
+        yearCol.setMinWidth(100);
+        yearCol.setCellValueFactory(new PropertyValueFactory<Book,String>("year"));
+
+        secondaryResult.getColumns().addAll(titleCol, authorCol, yearCol);
+        secondaryResult.setItems(data);
         secondaryLayout.setCenter(secondaryResult);
 
         secondaryBottomLayout = new BorderPane();
@@ -139,6 +159,10 @@ public class LibraryClientView extends Application {
         secondaryButtons.getChildren().add(secondaryReserve);
         secondaryCancel = new Button("Anuluj rezerwację");
         secondaryButtons.getChildren().add(secondaryCancel);
+
+        secondarySearch.setOnAction((event) -> {
+            controller.search(validateEmptySpace(secondaryTitleInput), validateEmptySpace(secondaryAuthorInput));
+        });
 
         secondaryBottomLayout.setLeft(secondaryButtons);
         secondaryLayout.setBottom(secondaryBottomLayout);
@@ -158,5 +182,23 @@ public class LibraryClientView extends Application {
 
     public void report(String reportText) {
         primaryReport.appendText(reportText + "\n");
+    }
+
+    public void showBooks(ArrayList<Book> books) {
+        data.clear();
+
+        for (Book book : books) {
+            data.add(book);
+        }
+    }
+
+    private String validateEmptySpace(TextField input) {
+        String text = input.getText();
+
+        if (text != null) {
+            return input.getText();
+        } else {
+            return "";
+        }
     }
 }

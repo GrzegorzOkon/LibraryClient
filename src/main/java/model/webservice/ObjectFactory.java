@@ -25,7 +25,9 @@ import javax.xml.namespace.QName;
 public class ObjectFactory {
 
     private final static QName _LogIn_QNAME = new QName("http://web/", "logIn");
+    private final static QName _SearchResponse_QNAME = new QName("http://web/", "searchResponse");
     private final static QName _LogInResponse_QNAME = new QName("http://web/", "logInResponse");
+    private final static QName _Search_QNAME = new QName("http://web/", "search");
 
     /**
      * Create a new ObjectFactory that can be used to create new instances of schema derived classes for package: model.webservice
@@ -43,11 +45,35 @@ public class ObjectFactory {
     }
 
     /**
+     * Create an instance of {@link Search }
+     * 
+     */
+    public Search createSearch() {
+        return new Search();
+    }
+
+    /**
+     * Create an instance of {@link SearchResponse }
+     * 
+     */
+    public SearchResponse createSearchResponse() {
+        return new SearchResponse();
+    }
+
+    /**
      * Create an instance of {@link LogIn }
      * 
      */
     public LogIn createLogIn() {
         return new LogIn();
+    }
+
+    /**
+     * Create an instance of {@link Book }
+     * 
+     */
+    public Book createBook() {
+        return new Book();
     }
 
     /**
@@ -68,12 +94,30 @@ public class ObjectFactory {
     }
 
     /**
+     * Create an instance of {@link JAXBElement }{@code <}{@link SearchResponse }{@code >}}
+     * 
+     */
+    @XmlElementDecl(namespace = "http://web/", name = "searchResponse")
+    public JAXBElement<SearchResponse> createSearchResponse(SearchResponse value) {
+        return new JAXBElement<SearchResponse>(_SearchResponse_QNAME, SearchResponse.class, null, value);
+    }
+
+    /**
      * Create an instance of {@link JAXBElement }{@code <}{@link LogInResponse }{@code >}}
      * 
      */
     @XmlElementDecl(namespace = "http://web/", name = "logInResponse")
     public JAXBElement<LogInResponse> createLogInResponse(LogInResponse value) {
         return new JAXBElement<LogInResponse>(_LogInResponse_QNAME, LogInResponse.class, null, value);
+    }
+
+    /**
+     * Create an instance of {@link JAXBElement }{@code <}{@link Search }{@code >}}
+     * 
+     */
+    @XmlElementDecl(namespace = "http://web/", name = "search")
+    public JAXBElement<Search> createSearch(Search value) {
+        return new JAXBElement<Search>(_Search_QNAME, Search.class, null, value);
     }
 
 }

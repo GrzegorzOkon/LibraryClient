@@ -1,6 +1,7 @@
 
 package model.webservice;
 
+import java.util.List;
 import javax.jws.WebMethod;
 import javax.jws.WebParam;
 import javax.jws.WebResult;
@@ -23,6 +24,24 @@ import javax.xml.ws.ResponseWrapper;
 })
 public interface LibraryImpl {
 
+
+    /**
+     * 
+     * @param arg1
+     * @param arg0
+     * @return
+     *     returns java.util.List<model.webservice.Book>
+     */
+    @WebMethod
+    @WebResult(targetNamespace = "")
+    @RequestWrapper(localName = "search", targetNamespace = "http://web/", className = "model.webservice.Search")
+    @ResponseWrapper(localName = "searchResponse", targetNamespace = "http://web/", className = "model.webservice.SearchResponse")
+    @Action(input = "http://web/LibraryImpl/searchRequest", output = "http://web/LibraryImpl/searchResponse")
+    public List<Book> search(
+            @WebParam(name = "arg0", targetNamespace = "")
+                    String arg0,
+            @WebParam(name = "arg1", targetNamespace = "")
+                    String arg1);
 
     /**
      * 
