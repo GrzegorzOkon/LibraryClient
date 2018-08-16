@@ -18,4 +18,8 @@ public class LibraryClientModel  {
     public List<Book> search(String title, String author) {
         return library.search(title, author);
     }
+
+    public List<Book> showUserRentals(String login) {
+        return library.showRentals(login);
+    }
 }

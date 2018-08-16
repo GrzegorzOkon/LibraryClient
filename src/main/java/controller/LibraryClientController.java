@@ -36,4 +36,11 @@ public class LibraryClientController {
 
         view.showBooks(books);
     }
+
+    public void showUserRentals(String login) {
+        ArrayList<Book> books = new ArrayList(model.showUserRentals(login));
+
+        //System.out.println(books.get(0).getAuthor());
+        view.showBooks(books);
+    }
 }

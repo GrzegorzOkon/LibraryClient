@@ -164,6 +164,10 @@ public class LibraryClientView extends Application {
             controller.search(validateEmptySpace(secondaryTitleInput), validateEmptySpace(secondaryAuthorInput));
         });
 
+        secondaryRentals.setOnAction((event) -> {
+            controller.showUserRentals(user.getLogin());
+        });
+
         secondaryBottomLayout.setLeft(secondaryButtons);
         secondaryLayout.setBottom(secondaryBottomLayout);
 

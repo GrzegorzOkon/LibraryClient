@@ -25,6 +25,8 @@ import javax.xml.namespace.QName;
 public class ObjectFactory {
 
     private final static QName _LogIn_QNAME = new QName("http://web/", "logIn");
+    private final static QName _ShowRentalsResponse_QNAME = new QName("http://web/", "showRentalsResponse");
+    private final static QName _ShowRentals_QNAME = new QName("http://web/", "showRentals");
     private final static QName _SearchResponse_QNAME = new QName("http://web/", "searchResponse");
     private final static QName _LogInResponse_QNAME = new QName("http://web/", "logInResponse");
     private final static QName _Search_QNAME = new QName("http://web/", "search");
@@ -53,11 +55,27 @@ public class ObjectFactory {
     }
 
     /**
+     * Create an instance of {@link ShowRentals }
+     * 
+     */
+    public ShowRentals createShowRentals() {
+        return new ShowRentals();
+    }
+
+    /**
      * Create an instance of {@link SearchResponse }
      * 
      */
     public SearchResponse createSearchResponse() {
         return new SearchResponse();
+    }
+
+    /**
+     * Create an instance of {@link ShowRentalsResponse }
+     * 
+     */
+    public ShowRentalsResponse createShowRentalsResponse() {
+        return new ShowRentalsResponse();
     }
 
     /**
@@ -91,6 +109,24 @@ public class ObjectFactory {
     @XmlElementDecl(namespace = "http://web/", name = "logIn")
     public JAXBElement<LogIn> createLogIn(LogIn value) {
         return new JAXBElement<LogIn>(_LogIn_QNAME, LogIn.class, null, value);
+    }
+
+    /**
+     * Create an instance of {@link JAXBElement }{@code <}{@link ShowRentalsResponse }{@code >}}
+     * 
+     */
+    @XmlElementDecl(namespace = "http://web/", name = "showRentalsResponse")
+    public JAXBElement<ShowRentalsResponse> createShowRentalsResponse(ShowRentalsResponse value) {
+        return new JAXBElement<ShowRentalsResponse>(_ShowRentalsResponse_QNAME, ShowRentalsResponse.class, null, value);
+    }
+
+    /**
+     * Create an instance of {@link JAXBElement }{@code <}{@link ShowRentals }{@code >}}
+     * 
+     */
+    @XmlElementDecl(namespace = "http://web/", name = "showRentals")
+    public JAXBElement<ShowRentals> createShowRentals(ShowRentals value) {
+        return new JAXBElement<ShowRentals>(_ShowRentals_QNAME, ShowRentals.class, null, value);
     }
 
     /**
