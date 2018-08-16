@@ -22,4 +22,8 @@ public class LibraryClientModel  {
     public List<Book> showUserRentals(String login) {
         return library.showRentals(login);
     }
+
+    public List<Book> showReservations(String login) {
+        return library.showReservations(login);
+    }
 }

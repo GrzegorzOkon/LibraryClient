@@ -165,7 +165,11 @@ public class LibraryClientView extends Application {
         });
 
         secondaryRentals.setOnAction((event) -> {
-            controller.showUserRentals(user.getLogin());
+            controller.showRentals(user.getLogin());
+        });
+
+        secondaryReservations.setOnAction((event) -> {
+            controller.showReservations(user.getLogin());
         });
 
         secondaryBottomLayout.setLeft(secondaryButtons);

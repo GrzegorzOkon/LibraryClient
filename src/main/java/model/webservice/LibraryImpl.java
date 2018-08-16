@@ -69,6 +69,21 @@ public interface LibraryImpl {
      */
     @WebMethod
     @WebResult(targetNamespace = "")
+    @RequestWrapper(localName = "showReservations", targetNamespace = "http://web/", className = "model.webservice.ShowReservations")
+    @ResponseWrapper(localName = "showReservationsResponse", targetNamespace = "http://web/", className = "model.webservice.ShowReservationsResponse")
+    @Action(input = "http://web/LibraryImpl/showReservationsRequest", output = "http://web/LibraryImpl/showReservationsResponse")
+    public List<Book> showReservations(
+            @WebParam(name = "arg0", targetNamespace = "")
+                    String arg0);
+
+    /**
+     * 
+     * @param arg0
+     * @return
+     *     returns java.util.List<model.webservice.Book>
+     */
+    @WebMethod
+    @WebResult(targetNamespace = "")
     @RequestWrapper(localName = "showRentals", targetNamespace = "http://web/", className = "model.webservice.ShowRentals")
     @ResponseWrapper(localName = "showRentalsResponse", targetNamespace = "http://web/", className = "model.webservice.ShowRentalsResponse")
     @Action(input = "http://web/LibraryImpl/showRentalsRequest", output = "http://web/LibraryImpl/showRentalsResponse")
