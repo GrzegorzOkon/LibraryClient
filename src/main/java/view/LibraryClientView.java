@@ -172,6 +172,22 @@ public class LibraryClientView extends Application {
             controller.showReservations(user.getLogin());
         });
 
+        secondaryReserve.setOnAction((event) -> {
+            if (secondaryResult.getSelectionModel().getSelectedItem() != null) {
+                Book selectedBook = (Book)secondaryResult.getSelectionModel().getSelectedItem();
+
+                controller.addReservation(user.getLogin(), selectedBook.getId());
+            }
+        });
+
+        secondaryCancel.setOnAction((event) -> {
+            if (secondaryResult.getSelectionModel().getSelectedItem() != null) {
+                Book selectedBook = (Book)secondaryResult.getSelectionModel().getSelectedItem();
+
+                controller.cancelReservation(user.getLogin(), selectedBook.getId());
+            }
+        });
+
         secondaryBottomLayout.setLeft(secondaryButtons);
         secondaryLayout.setBottom(secondaryBottomLayout);
 

@@ -26,4 +26,12 @@ public class LibraryClientModel  {
     public List<Book> showReservations(String login) {
         return library.showReservations(login);
     }
+
+    public void addReservation(String login, int bookId) {
+        library.addReservation(login, bookId);
+    }
+
+    public void cancelReservation(String login, int bookId) {
+        library.cancelReservation(login, bookId);
+    }
 }

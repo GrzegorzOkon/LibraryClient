@@ -48,4 +48,12 @@ public class LibraryClientController {
 
         view.showBooks(books);
     }
+
+    public void addReservation(String login, int bookId) {
+        model.addReservation(login, bookId);
+    }
+
+    public void cancelReservation(String login, int bookId) {
+        model.cancelReservation(login, bookId);
+    }
 }

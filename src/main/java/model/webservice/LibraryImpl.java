@@ -91,4 +91,34 @@ public interface LibraryImpl {
             @WebParam(name = "arg0", targetNamespace = "")
                     String arg0);
 
+    /**
+     * 
+     * @param arg1
+     * @param arg0
+     */
+    @WebMethod
+    @RequestWrapper(localName = "addReservation", targetNamespace = "http://web/", className = "model.webservice.AddReservation")
+    @ResponseWrapper(localName = "addReservationResponse", targetNamespace = "http://web/", className = "model.webservice.AddReservationResponse")
+    @Action(input = "http://web/LibraryImpl/addReservationRequest", output = "http://web/LibraryImpl/addReservationResponse")
+    public void addReservation(
+            @WebParam(name = "arg0", targetNamespace = "")
+                    String arg0,
+            @WebParam(name = "arg1", targetNamespace = "")
+                    int arg1);
+
+    /**
+     * 
+     * @param arg1
+     * @param arg0
+     */
+    @WebMethod
+    @RequestWrapper(localName = "cancelReservation", targetNamespace = "http://web/", className = "model.webservice.CancelReservation")
+    @ResponseWrapper(localName = "cancelReservationResponse", targetNamespace = "http://web/", className = "model.webservice.CancelReservationResponse")
+    @Action(input = "http://web/LibraryImpl/cancelReservationRequest", output = "http://web/LibraryImpl/cancelReservationResponse")
+    public void cancelReservation(
+            @WebParam(name = "arg0", targetNamespace = "")
+                    String arg0,
+            @WebParam(name = "arg1", targetNamespace = "")
+                    int arg1);
+
 }

@@ -25,12 +25,16 @@ import javax.xml.namespace.QName;
 public class ObjectFactory {
 
     private final static QName _LogIn_QNAME = new QName("http://web/", "logIn");
+    private final static QName _AddReservationResponse_QNAME = new QName("http://web/", "addReservationResponse");
     private final static QName _ShowReservations_QNAME = new QName("http://web/", "showReservations");
     private final static QName _ShowRentalsResponse_QNAME = new QName("http://web/", "showRentalsResponse");
+    private final static QName _CancelReservationResponse_QNAME = new QName("http://web/", "cancelReservationResponse");
     private final static QName _ShowReservationsResponse_QNAME = new QName("http://web/", "showReservationsResponse");
     private final static QName _ShowRentals_QNAME = new QName("http://web/", "showRentals");
+    private final static QName _CancelReservation_QNAME = new QName("http://web/", "cancelReservation");
     private final static QName _SearchResponse_QNAME = new QName("http://web/", "searchResponse");
     private final static QName _LogInResponse_QNAME = new QName("http://web/", "logInResponse");
+    private final static QName _AddReservation_QNAME = new QName("http://web/", "addReservation");
     private final static QName _Search_QNAME = new QName("http://web/", "search");
 
     /**
@@ -38,6 +42,14 @@ public class ObjectFactory {
      * 
      */
     public ObjectFactory() {
+    }
+
+    /**
+     * Create an instance of {@link AddReservation }
+     * 
+     */
+    public AddReservation createAddReservation() {
+        return new AddReservation();
     }
 
     /**
@@ -73,11 +85,27 @@ public class ObjectFactory {
     }
 
     /**
+     * Create an instance of {@link CancelReservation }
+     * 
+     */
+    public CancelReservation createCancelReservation() {
+        return new CancelReservation();
+    }
+
+    /**
      * Create an instance of {@link SearchResponse }
      * 
      */
     public SearchResponse createSearchResponse() {
         return new SearchResponse();
+    }
+
+    /**
+     * Create an instance of {@link CancelReservationResponse }
+     * 
+     */
+    public CancelReservationResponse createCancelReservationResponse() {
+        return new CancelReservationResponse();
     }
 
     /**
@@ -102,6 +130,14 @@ public class ObjectFactory {
      */
     public ShowReservations createShowReservations() {
         return new ShowReservations();
+    }
+
+    /**
+     * Create an instance of {@link AddReservationResponse }
+     * 
+     */
+    public AddReservationResponse createAddReservationResponse() {
+        return new AddReservationResponse();
     }
 
     /**
@@ -130,6 +166,15 @@ public class ObjectFactory {
     }
 
     /**
+     * Create an instance of {@link JAXBElement }{@code <}{@link AddReservationResponse }{@code >}}
+     * 
+     */
+    @XmlElementDecl(namespace = "http://web/", name = "addReservationResponse")
+    public JAXBElement<AddReservationResponse> createAddReservationResponse(AddReservationResponse value) {
+        return new JAXBElement<AddReservationResponse>(_AddReservationResponse_QNAME, AddReservationResponse.class, null, value);
+    }
+
+    /**
      * Create an instance of {@link JAXBElement }{@code <}{@link ShowReservations }{@code >}}
      * 
      */
@@ -145,6 +190,15 @@ public class ObjectFactory {
     @XmlElementDecl(namespace = "http://web/", name = "showRentalsResponse")
     public JAXBElement<ShowRentalsResponse> createShowRentalsResponse(ShowRentalsResponse value) {
         return new JAXBElement<ShowRentalsResponse>(_ShowRentalsResponse_QNAME, ShowRentalsResponse.class, null, value);
+    }
+
+    /**
+     * Create an instance of {@link JAXBElement }{@code <}{@link CancelReservationResponse }{@code >}}
+     * 
+     */
+    @XmlElementDecl(namespace = "http://web/", name = "cancelReservationResponse")
+    public JAXBElement<CancelReservationResponse> createCancelReservationResponse(CancelReservationResponse value) {
+        return new JAXBElement<CancelReservationResponse>(_CancelReservationResponse_QNAME, CancelReservationResponse.class, null, value);
     }
 
     /**
@@ -166,6 +220,15 @@ public class ObjectFactory {
     }
 
     /**
+     * Create an instance of {@link JAXBElement }{@code <}{@link CancelReservation }{@code >}}
+     * 
+     */
+    @XmlElementDecl(namespace = "http://web/", name = "cancelReservation")
+    public JAXBElement<CancelReservation> createCancelReservation(CancelReservation value) {
+        return new JAXBElement<CancelReservation>(_CancelReservation_QNAME, CancelReservation.class, null, value);
+    }
+
+    /**
      * Create an instance of {@link JAXBElement }{@code <}{@link SearchResponse }{@code >}}
      * 
      */
@@ -181,6 +244,15 @@ public class ObjectFactory {
     @XmlElementDecl(namespace = "http://web/", name = "logInResponse")
     public JAXBElement<LogInResponse> createLogInResponse(LogInResponse value) {
         return new JAXBElement<LogInResponse>(_LogInResponse_QNAME, LogInResponse.class, null, value);
+    }
+
+    /**
+     * Create an instance of {@link JAXBElement }{@code <}{@link AddReservation }{@code >}}
+     * 
+     */
+    @XmlElementDecl(namespace = "http://web/", name = "addReservation")
+    public JAXBElement<AddReservation> createAddReservation(AddReservation value) {
+        return new JAXBElement<AddReservation>(_AddReservation_QNAME, AddReservation.class, null, value);
     }
 
     /**
