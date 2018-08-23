@@ -15,11 +15,14 @@ import javafx.stage.Stage;
 import model.LibraryClientModel;
 import model.webservice.Book;
 import model.webservice.User;
+import view.validators.EmptySpaceTextValidatorBuilder;
+import view.validators.TextValidatorBuilder;
 
 import java.util.ArrayList;
 
 public class LibraryClientView extends Application {
     private LibraryClientController controller;
+    private TextValidatorBuilder[] validators;
 
     private Stage primaryStage;
     private Scene primaryScene;
@@ -75,7 +78,14 @@ public class LibraryClientView extends Application {
         primaryButtons.getChildren().add(primaryLogIn);
 
         primaryLogIn.setOnAction((event) -> {
-            controller.connect(primaryUserLogin.getText().toLowerCase(), primaryUserPassword.getText().toLowerCase());
+            boolean isLogin = validateInput(primaryUserLogin);
+            boolean isPassword = validateInput(primaryUserPassword);
+
+            if (isLogin && isPassword) {
+                controller.connect(primaryUserLogin.getText().toLowerCase(), primaryUserPassword.getText().toLowerCase());
+            } else {
+                report("Nie wprowadzono poprawnych danych.");
+            }
         });
 
         primaryBottomLayout.setRight(primaryButtons);
@@ -88,7 +98,7 @@ public class LibraryClientView extends Application {
     public void start(Stage primaryStage) {
         prepareScene(primaryStage);
 
-        setMVCReference();
+        setReferences();
         this.primaryStage = primaryStage;
 
         primaryStage.setTitle("LibraryClient");
@@ -96,9 +106,11 @@ public class LibraryClientView extends Application {
         primaryStage.show();
     }
 
-    private void setMVCReference() {
+    private void setReferences() {
         LibraryClientModel model = new LibraryClientModel();
         controller = new LibraryClientController(this, model);
+
+        validators = new TextValidatorBuilder[]{new EmptySpaceTextValidatorBuilder()};
     }
 
     public static void main(String[] args) {
@@ -161,7 +173,12 @@ public class LibraryClientView extends Application {
         secondaryButtons.getChildren().add(secondaryCancel);
 
         secondarySearch.setOnAction((event) -> {
-            controller.search(validateEmptySpace(secondaryTitleInput), validateEmptySpace(secondaryAuthorInput));
+            boolean isTitle = validateInput(secondaryTitleInput);
+            boolean isAuthor = validateInput(secondaryAuthorInput);
+
+            if(isTitle || isAuthor) {
+                controller.search(secondaryTitleInput.getText(), secondaryAuthorInput.getText());
+            }
         });
 
         secondaryRentals.setOnAction((event) -> {
@@ -216,13 +233,15 @@ public class LibraryClientView extends Application {
         }
     }
 
-    private String validateEmptySpace(TextField input) {
-        String text = input.getText();
+    private boolean validateInput(TextInputControl input) {
+        for(int i = 0; i < validators.length; i++) {
+            validators[i].buildInputText(input);
 
-        if (text != null) {
-            return input.getText();
-        } else {
-            return "";
+            if (!validators[i].validate()) {
+                return false;
+            }
         }
+
+        return true;
     }
 }
